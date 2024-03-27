@@ -68,7 +68,7 @@ else {
 
 
 
-
+/*
 let idade = 18;
 let nome = "joao";
 let altura = 1.80;
@@ -76,3 +76,27 @@ let altura = 1.80;
 if(idade >= 18 && nome === "joao"){
     console.log("ola, joao, vc tem mais de 18 anos")  
 }
+*/
+
+
+/*for(let i = 1; i < 1000000; i++){
+    console.log(i * 58);
+}*/
+
+
+
+
+let conteudo_classe;
+conteudo_classe = document.querySelector(".paragrafo-classe");
+console.log(conteudo_classe);
+
+
+
+function soma(num1, num2){
+    let somanumeros = num1 + num2;
+    return somanumeros;
+}
+
+let resultadoDaSoma = soma (2, 3);
+
+console.log(resultadoDaSoma);
