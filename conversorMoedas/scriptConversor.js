@@ -20,7 +20,49 @@ const valoresConversao = {
 
 }
 
-//console.log(valoresConversao['real'] ['euro']);
+const botaoInverter = document.getElementById("botao-inverter");
+botaoInverter.addEventListener("click", inverter);
+
+const botaoConverter = document.getElementById("botao-converter");
+botaoConverter.addEventListener("click", converter);
+
+const botaoLimpar = document.getElementById("botao-limpar");
+botaoLimpar.addEventListener("click", limpar);
+
+
+document.addEventListener("keydown", function(event) {
+    console.log(event);
+},false);
+
+let valorUsuario = document.getElementById("valorEntrada");
+valorUsuario.addEventListener("keypress", function(event){
+
+event.preventDefault();
+console.log(event);
+
+if(event.ctrlKey == true && event.code == "KeyI"){
+    inverter();
+
+}
+
+if(event.ctrlKey == true && event.code == "KeyL"){
+
+    event.preventDefault();
+    limpar();
+}
+
+if(event.key == "Enter"){
+    event.preventDefault();
+    converter();
+}
+});
+
+
+
+
+
+
+
 
 function converter(){
 
