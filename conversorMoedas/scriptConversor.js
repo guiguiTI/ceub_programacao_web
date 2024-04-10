@@ -34,6 +34,14 @@ const botaoAceitaMensagem = document.getElementById("botao-aceita-mensagem")
 botaoAceitaMensagem.addEventListener("click", aceitarMensagem);
 
 
+console.log(localStorage.getItem("aceitouCookie"));
+
+
+if(localStorage.getItem("aceitouCookie") == "1"){
+    console.log("usuario ja aceitou os termos, não vou mais mostrar.")
+    const divMensagemUsuario = document.getElementById("mensagem-usuario");
+    divMensagemUsuario.classList.add("oculto");
+}
 
 function aceitarMensagem(){
     alert("Usuário aceitou os termos! ");
@@ -41,6 +49,8 @@ function aceitarMensagem(){
     divMensagemUsuario.classList.add("oculto");
 }
 
+
+localStorage.setItem("aceitouCookie", "1");
 
 let valorUsuario = document.getElementById("valorEntrada");
 valorUsuario.addEventListener("keypress", function(event){
@@ -114,7 +124,27 @@ function converter(){
     let paragrafoResultado = document.getElementById("resultado");
     paragrafoResultado.textContent = simbolo + "  " + resultado.toFixed(2);
 
+
 }
+
+
+let objetoResultado = {
+    valorDoUsuario: valorUsuario,
+    valorMoeda1: moeda1,
+    valorMoeda2: moeda2,
+    valorResultado: resultado
+}
+
+console.log (objetoResultado);
+localStorage.setItem("historico", objetoResultado);
+
+
+
+function salvarResultadoNoLocalStorage(resultado){
+    
+}
+
+
 
 
 function limpar(){
@@ -126,6 +156,9 @@ function limpar(){
     valorEntrada.value = " ";
 
 }
+
+
+
 
 
 function inverter(){
