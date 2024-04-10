@@ -30,15 +30,27 @@ const botaoLimpar = document.getElementById("botao-limpar");
 botaoLimpar.addEventListener("click", limpar);
 
 
-document.addEventListener("keydown", function(event) {
-    console.log(event);
-},false);
+const botaoAceitaMensagem = document.getElementById("botao-aceita-mensagem")
+botaoAceitaMensagem.addEventListener("click", aceitarMensagem);
+
+
+
+function aceitarMensagem(){
+    alert("Usuário aceitou os termos! ");
+    const divMensagemUsuario = document.getElementById ("mensagem-usuario")
+    divMensagemUsuario.classList.add("oculto");
+}
+
 
 let valorUsuario = document.getElementById("valorEntrada");
 valorUsuario.addEventListener("keypress", function(event){
 
-event.preventDefault();
 console.log(event);
+
+if(event.ctrlKey == true && event.key == "L"){
+    event.preventDefault();
+    limpar();
+}
 
 if(event.ctrlKey == true && event.code == "KeyI"){
     inverter();
