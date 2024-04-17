@@ -1,12 +1,51 @@
+body{
+    background-color: #6184ce;
+    color: var
+}
+
+
+
+
+
+button{
+    background-color: #2a5eceb7;
+    color: #f0f0f0;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+}
+* {
+    --cor-de-fundo: #EDF7D2;
+    --cor-de-fonte: #000;
+    --cor-de-container: bisque;
+    --cor-de-botao: #5b5b5b;
+    
+}
+
+button:hover{
+    background-color: #0c0c0c;
+    cursor: pointer;
+}
+
+select{
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+
+
 #container{
+    background-color: bisque;
+    box-shadow: 2px 2px 2px;
     margin-top: 50px;
-    border: 1px solid rgb(76, 98, 223);
-    padding: 20px;
+    padding: 50px;
     text-align: center;
     width: 630px;
-    margin: auto;
+    margin: 80px;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 20px;
 
 }
 
@@ -15,8 +54,13 @@ input, select, button{
     margin-bottom:  50px;
     margin-right: 6px;
     padding: 10px;
+
 }
 
+
+#resultado{
+    font-weight: bold;
+}
 h1{
     font-family: "Playfair Display", serif;
 }
