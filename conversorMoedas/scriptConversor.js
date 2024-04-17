@@ -87,6 +87,8 @@ if(event.key == "Enter"){
 
 
 function converter(){
+    let historicoRecuperado = recuperaHistorico();
+
 
     let valorUsuario = document.getElementById("valorEntrada").value;
 
@@ -125,20 +127,55 @@ function converter(){
     paragrafoResultado.textContent = simbolo + "  " + resultado.toFixed(2);
 
 
+    let objetoResultado = {
+        valorDoUsuario: valorUsuario,
+        valorMoeda1: moeda1,
+        valorMoeda2: moeda2,
+        valorResultado: resultado
+    }
+    
+    console.log (objetoResultado);
+    
+    
+    let objetoResultadoJSON = JSON.stringify(objetoResultado);
+    //console.log(objetoResultadoJSON);
+    
+    salvarHistorico (objetoResultadoJSON);
+    //localStorage.setItem("historico", objetoResultadoJSON);
+    
+    //localStorage.setItem("historico", objetoResultado);
+
+
 }
 
 
-let objetoResultado = {
-    valorDoUsuario: valorUsuario,
-    valorMoeda1: moeda1,
-    valorMoeda2: moeda2,
-    valorResultado: resultado
+function recuperaHistorico (){
+    let historico = localStorage.getItem("historico");
+
+    if(!historico){
+        return[];
+        
+    }
+
+    let historicoObjetvo = JSON.parse(historico);
+
+    return historicoObjetvo;
+
+    // vá até o localstorage e recupere (get) o valor da chave "historico"
+    // localstorage salva STRING
+    // quero retornar um OBJETO JAVASCRIPT
 }
 
-console.log (objetoResultado);
-localStorage.setItem("historico", objetoResultado);
+function salvarHistorico(conversao){
+    let historico = recuperaHistorico();
+
+    
+    historico.push(conversao);
+    historico = JSON.stringify(historico);
+    localStorage.setItem("historico", historico);
 
 
+}
 
 function salvarResultadoNoLocalStorage(resultado){
     
