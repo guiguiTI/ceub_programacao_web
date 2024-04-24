@@ -20,6 +20,12 @@ const valoresConversao = {
 
 }
 
+const relacaoNomesMoedas = {
+    real: "BRL",
+    dolar: "USD",
+    euro: "EUR"
+}
+
 const botaoInverter = document.getElementById("botao-inverter");
 botaoInverter.addEventListener("click", inverter);
 
@@ -41,6 +47,34 @@ if(localStorage.getItem("aceitouCookie") == "1"){
     console.log("usuario ja aceitou os termos, não vou mais mostrar.")
     const divMensagemUsuario = document.getElementById("mensagem-usuario");
     divMensagemUsuario.classList.add("oculto");
+}
+
+function buscaConversaoAPI(moedaOrigem, moedaDestino){
+
+
+    let urlApi = "https://economia.awesomeapi.com.br/last/";
+    urlApi = urlApi + moedaOrigem + "-" + moedaDestino;
+
+    console.log(urlApi);
+
+    let responseAPI = "";
+
+
+    fetch("https://economia.awesomeapi.com.br/last/USD-BRL").then(function(response){
+        if(response.status == 200){
+            console.log("A chamada foi feita com sucesso")
+        }
+        return response.json();
+
+    }).then(function(data){
+        responseAPI = data;
+        console.log(data)
+    }).catch(function(error){
+        console.log("deu erro")
+        console.log(error);
+    })
+
+    return responseAPI;
 }
 
 function aceitarMensagem(){
@@ -87,9 +121,8 @@ if(event.key == "Enter"){
 
 
 function converter(){
+    
     let historicoRecuperado = recuperaHistorico();
-
-
     let valorUsuario = document.getElementById("valorEntrada").value;
 
 
@@ -109,13 +142,20 @@ function converter(){
     let moeda1 = document.getElementById("moeda1").value;
     let moeda2 = document.getElementById("moeda2").value;
 
+
+    console.log(moeda1);
+    console.log(moeda2);
+
+
+
     if (moeda1 == moeda2) {
         alert ("As moedas são iguais!!")
         return;
     }
     
 
-
+    buscaConversaoAPI(relacaoNomesMoedas[moeda1], relacaoNomesMoedas[moeda2]);
+    
 
     let simbolo = valoresConversao[moeda2]["simbolo"];
     //console.log(simbolo)
