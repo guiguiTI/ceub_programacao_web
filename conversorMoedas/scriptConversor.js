@@ -60,21 +60,22 @@ function buscaConversaoAPI(moedaOrigem, moedaDestino){
     let responseAPI = "";
 
 
-    fetch("https://economia.awesomeapi.com.br/last/USD-BRL").then(function(response){
+    fetch(urlApi).then(function(response){
         if(response.status == 200){
             console.log("A chamada foi feita com sucesso")
         }
         return response.json();
 
     }).then(function(data){
-        responseAPI = data;
-        console.log(data)
+        let objetoEmJson = JSON.stringify(data);
+        console.log(data[moedaOrigem + moedaDestino]);
+        console.log(data[moedaOrigem + moedaDestino]["ask"]);
+        console.log(objetoEmJson)
     }).catch(function(error){
-        console.log("deu erro")
         console.log(error);
     })
 
-    return responseAPI;
+    //return responseAPI;
 }
 
 function aceitarMensagem(){
@@ -120,7 +121,7 @@ if(event.key == "Enter"){
 
 
 
-function converter(){
+function converter(fatorDeConversao){
     
     let historicoRecuperado = recuperaHistorico();
     let valorUsuario = document.getElementById("valorEntrada").value;
@@ -154,8 +155,8 @@ function converter(){
     }
     
 
-    buscaConversaoAPI(relacaoNomesMoedas[moeda1], relacaoNomesMoedas[moeda2]);
-    
+    let parametrosConversao = buscaConversaoAPI(relacaoNomesMoedas[moeda1], relacaoNomesMoedas[moeda2]);
+
 
     let simbolo = valoresConversao[moeda2]["simbolo"];
     //console.log(simbolo)
